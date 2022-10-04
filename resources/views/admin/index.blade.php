@@ -98,7 +98,7 @@
         </div><!-- end row -->
 
         <div class="row">
-            <div class="col-xl-6">
+            {{-- <div class="col-xl-6">
 
                 <div class="card">
                     <div class="card-body pb-0">
@@ -153,8 +153,8 @@
                     </div>
                 </div><!-- end card -->
             </div>
-            <!-- end col -->
-            <div class="col-xl-6">
+            <!-- end col --> --}}
+            {{-- <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body pb-0">
                         <div class="float-end d-none d-md-inline-block">
@@ -200,15 +200,15 @@
                     </div>
                 </div><!-- end card -->
             </div>
-            <!-- end col -->
+            <!-- end col --> --}}
         </div>
         <!-- end row -->
 
         <div class="row">
-            <div class="col-xl-8">
+            <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="dropdown float-end">
+                        {{-- <div class="dropdown float-end">
                             <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical"></i>
                             </a>
@@ -222,7 +222,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item">Action</a>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <h4 class="card-title mb-4">Latest Transactions</h4>
 
@@ -351,7 +351,7 @@
                 </div><!-- end card -->
             </div>
             <!-- end col -->
-            <div class="col-xl-4">
+            {{-- <div class="col-xl-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="float-end">
@@ -394,7 +394,7 @@
                         </div>
                     </div>
                 </div><!-- end card -->
-            </div><!-- end col -->
+            </div><!-- end col --> --}}
         </div>
         <!-- end row -->
     </div>
