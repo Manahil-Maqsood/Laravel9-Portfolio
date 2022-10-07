@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Home\AboutPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,8 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('frontend.index');
+})->name('frontend.index');
 
 
 Route::get('/dashboard', function () {
@@ -36,5 +38,27 @@ Route::controller(AdminController::class)->group(function () {
 
     Route::get('/admin/change_password', 'change_password')->name('change.password');
     Route::post('/admin/update_password', 'update_password')->name('update.password');
+});
+
+
+/// HomeSlider all Routes ///
+Route::controller(HomeSliderController::class)->group(function () {
+    Route::get('/home/slider', 'HomeSlider')->name('home.slide');
+    Route::post('/slider/update', 'UpdateSlider')->name('update.slide');
+});
+
+/// AboutPage all Routes ///
+Route::controller(AboutPageController::class)->group(function () {
+    Route::get('/about', 'AboutDetail')->name('about.detail');
+
+    Route::get('/about/page', 'AboutPage')->name('about.page');
+    Route::post('/about/update', 'UpdateAbout')->name('update.about');
+
+    Route::get('/about/multi/image', 'MultiImage')->name('about.multi.image');
+    Route::post('/store/multi/image', 'StoreMultiImage')->name('store.multi.image');
+    Route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
+    Route::get('/edit/multi/image{id}', 'EditMultiImage')->name('edit.multi.image');
+    Route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
+    Route::get('/delete/multi/image{id}', 'DeleteMultiImage')->name('delete.multi.image');
 });
 
