@@ -1,6 +1,17 @@
 @extends('admin.admin_master')
 @section('admin-main-content')
 
+<style type="text/css">
+    .bootstrap-tagsinput .tag {
+      margin-right: 2px;
+      color: white !important;
+      background-color: #0d6efd;
+      padding: 0.1rem;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+</style>
+
 <div class="page-content">
     <div class="container-fluid">
 
@@ -8,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="card">
 
-                    <h4 class="text-muted font-size-16 mt-3 ms-4"><b>About Page</b></h4>
+                    <h4 class="text-muted font-size-16 mt-3 ms-4"><b>Add Blog Page</b></h4>
 
                     <div class="card-body">
 
@@ -25,56 +36,60 @@
                         </div>
                         @endif
 
-                        <form method="POST" action="{{ route('update.about') }}" enctype="multipart/form-data" class="form-horizontal">
+                        <form method="POST" action="{{ route('store.blog') }}" enctype="multipart/form-data" class="form-horizontal">
                             @csrf
 
-                            <div class="form-group mb-3 row">
-                                <input type="hidden" name="id" value="{{ $aboutpage->id }}">
 
-                                <label for="title" class="col-sm-2 col-form-label" >Title</label>
+                            <div class="form-group row mb-3">
+                                <label class="col-sm-2 col-form-label">Blog Category</label>
                                 <div class="col-sm-10">
-                                    <input id="title" class="form-control" type="text" name="title" value="{{ $aboutpage->title }}">
+                                    <select name="blog_category_id" class="form-select" aria-label="Default select example">
+                                        <option selected="" disabled>Select Blog Category</option>
+                                        @foreach ($categories as $item)
+                                        <option value="{{ $item->id }}">{{ $item->blog_category }}</option>
+                                        @endforeach
+                                        </select>
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
-                                <label for="short_title" class="col-sm-2 col-form-label" >Short Title</label>
+                                <label for="blog_title" class="col-sm-2 col-form-label" >Blog Title</label>
                                 <div class="col-sm-10">
-                                    <input id="short_title" class="form-control" type="text" name="short_title" value="{{ $aboutpage->short_title }}">
+                                    <input id="blog_title" class="form-control" type="text" name="blog_title" value="">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 row">
+                                <label for="blog_tags" class="col-sm-2 col-form-label" >Blog Tags</label>
+                                <div class="col-sm-10">
+                                    <input id="blog_tags" class="form-control" type="text" name="blog_tags" value="home,tech" data-role="tagsinput" placeholder="Add a tag... (then press comma or enter)">
                                 </div>
                             </div>
 
                             <div class="form-group mb-4 row">
-                                <label for="short_description" class="col-sm-2 col-form-label" >Short Description</label>
+                                <label for="blog_description" class="col-sm-2 col-form-label" >Blog Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="short_description" name="short_description" rows="5">{{ $aboutpage->short_description }}</textarea>
+                                    <textarea id="elm1" class="form-control" name="blog_description"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group mb-4 row">
-                                <label for="long_description" class="col-sm-2 col-form-label" >Long Description</label>
+                                <label for="blog_image" class="col-sm-2 col-form-label" >Blog Image</label>
                                 <div class="col-sm-10">
-                                    <textarea id="elm1" name="long_description">{{ $aboutpage->long_description }}</textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-4 row">
-                                <label for="about_image" class="col-sm-2 col-form-label" >About Image</label>
-                                <div class="col-sm-10">
-                                    <input id="about_image" class="form-control" type="file" name="about_image">
+                                    <input id="blog_image" class="form-control" type="file" name="blog_image">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
                                 <label for="show_image" class="col-sm-2 col-form-label" ></label>
                                 <div class="col-sm-10">
-                                    <img id="show_image" src="{{ (!empty($aboutpage->about_image))? asset('frontend/assets/img/images/' . $aboutpage->about_image) : asset('frontend/assets/img/images/no_image.jpg') }}" alt="avatar-4" class="rounded avatar-lg">
+                                    <img id="show_image" style="width:10rem; height:6rem" src="{{ url('frontend/assets/img/images/no_image.jpg') }}" alt="avatar-4" class="rounded">
                                 </div>
                             </div>
 
                             <div class="form-group mb-2 text-center row mt-3 pt-1 d-flex justify-content-start">
                                 <div class="col-3">
-                                    <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Update About Page</button>
+                                    <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Insert Blog Data</button>
                                 </div>
                             </div>
 
@@ -89,7 +104,7 @@
 
     //Load Image
         $(document).ready(function() {
-            $('#about_image').change(function(e) {
+            $('#blog_image').change(function(e) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#show_image').attr('src', e.target.result);

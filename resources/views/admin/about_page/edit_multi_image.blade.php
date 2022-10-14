@@ -28,7 +28,7 @@
                         <form method="POST" action="{{ route('update.multi.image') }}" enctype="multipart/form-data" class="form-horizontal">
                             @csrf
 
-                            <input id="id" class="form-control" type="hidden" name="id" value="{{ $multiImageData->id }}">
+                            <input id="id" class="form-control" type="text" hidden name="id" value="{{ $multiImageData->id }}">
 
                             <div class="form-group mb-4 row">
                                 <label for="update_multi_image" class="col-sm-2 col-form-label" >Update Multi Image</label>
